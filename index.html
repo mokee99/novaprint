@@ -148,7 +148,7 @@
                 <div class="process-header">
                     <div class="process-heading-wrapper">
                         <span class="label">PROCESS</span>
-                        <h2 class="second-heading">OUR ORDERING PROCESS</h2>   
+                        <h2 class="second-heading process-heading">OUR ORDERING PROCESS</h2>   
                     </div>
                     <div class="process-paragraph-wrapper">
                         <p class="process-paragraph">From your idea to high-quality 3D printed product. Our streamlined process ensures precision, transparency, and on-time delivery.</p>
@@ -200,7 +200,7 @@
                         </div>
                         <div class="process-image-wrapper">
                             <div class="process-image">
-                                <img class="process-img" src="./assets/images/process-print.webp" alt="Printing process illustration">
+                                <img class="process-img" src="./assets/images/process-printer.webp" alt="Printing process illustration">
                             </div>
 
                         </div>
@@ -217,7 +217,7 @@
                         </div>
                         <div class="process-image-wrapper">
                             <div class="process-image">
-                                <img class="process-img" src="./assets/images/process-quality.webp" alt="Quality check process illustration">
+                                <img class="process-img is-quality" src="./assets/images/process-quality.webp" alt="Quality check process illustration">
                             </div>
 
                         </div>
@@ -259,7 +259,7 @@
             <div class="about-content-wrapper">
                 <div class="about-header">
                     <span class="label">About us</span>
-                    <h2 class="second-heading about-heading">TURNING IDEAS INTO REALITY, LAYER BY LAYER</h2>
+                    <h2 class="second-heading about-heading">IDEAS BROUGHT TO LIFE, LAYER BY LAYER</h2>
                     <p class="about-paragraph">At Nova Print, we value the ability to be precise and creative. Whether it's a personalized gift, an intricate prototype, or a distinctive piece of home decor, our goal is to bring your ideas to life via 3D printing. We ensure that every print satisfies the highest standards since we are passionate about design and dedicated to perfection.</p>
                 </div>
                 <div class="about-stats-wrapper">
@@ -302,7 +302,10 @@
 
         </div>
         <div class="about-image-wrapper">
-                <img class="about-img" src="./assets/images/about-model.webp" alt="Printer Model">
+            <picture>
+                <source media="(max-width: 991px)" srcset="./assets/images/about-printer-tablet.webp">
+                <img class="about-img" src="./assets/images/about-model.webp" alt="Printer model">
+            </picture>
         </div>
     </section>
 
@@ -516,9 +519,69 @@
 
 
                     </div>
+                
+                </div>
+                <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact">
+
+                    <div class="form-header">
+                        <h3 class="form-heading">SEND US A MESSAGE</h3>
+                        <p class="form-paragraph">Fill out the form below and we’ll get back to you as soon as possible.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="full name">FULL NAME</label>
+                        <input class="form-input" id="full-name" name="full-name" type="text" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">EMAIL</label>
+                        <input class="form-input" id="email" name="email" type="email" placeholder="Your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone">PHONE NUMBER</label>
+                        <input class="form-input" id="phone" name="phone" type="tel" placeholder="Your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="service">WHAT SERVICES ARE YOU LOOKING FOR</label>
+                        <input class="form-input" id="service" name="service" type="text" placeholder="Services you are interested in" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">MESSAGE</label>
+                        <textarea class="form-textarea" id="message" name="message" placeholder="Your message" required></textarea>
+                    </div>
+
+                    <button class="form-submit" type="submit">SUBMIT MESSAGE</button>
+
+                </form> 
+
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container-md">
+            <div class="footer-main-wrapper">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="./assets/images/logo.svg" alt="Novaprint logo">
+                    </div>
+                    <div class="footer-links-wrapper">
+                        <a class="footer-link" href="">HOME</a>
+                        <a class="footer-link" href="">ABOUT US</a>
+                        <a class="footer-link" href="">SERVICES</a>
+                        <a class="footer-link" href="">FAQ</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <span class="all-rights">© 2026 NOVAPRINT. All rights reserved.</span>
                 </div>
             </div>
         </div>
+        <div class="footer-line"></div>
     </section>
     
 </body>
