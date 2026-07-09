@@ -42,7 +42,14 @@ body {
 
     line-height: 1.5;
 
-    overflow-x: hidden;
+    /* FIX: overflow-x: hidden ovde je pravio problem — po CSS spec-u,
+       kad overflow-x nije "visible", browser automatski postavlja
+       overflow-y na "auto", pa body postaje scroll container i
+       LOMI position: sticky na CELOM sajtu (uklju\u010duju\u0107i process
+       sekciju). overflow: clip radi isti vizuelni posao (spre\u010dava
+       horizontalni skrol) ali NE pravi scroll container, pa sticky
+       radi normalno. */
+    overflow-x: clip;
 }
 
 img {
@@ -279,15 +286,6 @@ select {
     }
 }
 
-
-
-
-
-
-
-
-
-
 .section-hero {
     width: 100%;
     
@@ -300,8 +298,6 @@ select {
     padding-inline: 0.75rem;
     overflow: hidden;
 }
-
-
 
 .hero-content {
     width: 100%;
@@ -320,8 +316,6 @@ select {
     }
 }
 
-
-
 .heading-wrapper {
     display: flex;
     flex-direction: row;
@@ -337,8 +331,6 @@ select {
     }
 }
 
-
-
 .hero-paragraph {
     max-width: 400px;
     position: absolute;
@@ -352,8 +344,6 @@ select {
         transform: none;
     }
 }
-
-
 
 .hero-image  img {
     position: absolute;
@@ -396,7 +386,6 @@ select {
     }
 }
 
-
 .hero-heading {
     font-family: var(--ff-heading);
     font-size: 120px;
@@ -421,12 +410,9 @@ select {
     }
 }
 
-
 .hero-heading-right {
     margin-top: 360px;
 }
-
-
 
 .hero-heading-left {
     margin-top: 120px;
@@ -465,7 +451,6 @@ select {
     }
 }
 
-
 .hero-glow {
     background-color: var(--clr-red);
     width: 400px;
@@ -484,15 +469,6 @@ select {
         height: 350px;
     }
 }
-
-
-
-
-
-
-
-
-
 
 .section-services {
     padding-top: 96px;
@@ -517,7 +493,11 @@ select {
     max-width: 1296px;
     margin-inline: auto;
     padding-inline: 0.75rem;
-    overflow: hidden;
+    /* FIX: overflow: hidden ovde je bio drugi krivac. .container-md
+       je direktni roditelj .process-cards-wrapper, pa je i on
+       pravio scroll container koji je lomio sticky. overflow: clip
+       je bezbedna zamena (isti vizuelni efekat, ne kvari sticky). */
+    overflow: clip;
 }
 
 .services-header {
@@ -527,7 +507,6 @@ select {
     align-items: flex-end;
     margin-bottom: 72px;
 }
-
 
 @media (max-width: 992px) {
     .services-header {
@@ -547,7 +526,6 @@ select {
 .service-main-paragraph {
     max-width: 450px;
 }
-
 
 .label {
     font-family: var(--ff-heading);
@@ -590,10 +568,6 @@ select {
     flex-direction: column;
     gap: 24px;
 }
-
-
-
-
 
 .services-card {
     max-width: 1296px;
@@ -639,7 +613,6 @@ select {
         
     }
 }
-
 
 .service-number {
     font-family: var(--ff-heading);
@@ -778,12 +751,6 @@ select {
     }
 }
 
-
-
-
-
-
-
 .section-process {
     padding-top: 96px;
     padding-bottom: 96px;
@@ -809,8 +776,6 @@ select {
         padding-bottom: 32px;
     }
 }
-
-
 
 .process-header {
     display: flex;
@@ -845,11 +810,19 @@ select {
     max-width: 450px;
 }
 
+/* PROCESS CARDS */
+
 .process-cards-wrapper {
+    --numcards: 5;
+
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 0;
+
     padding-bottom: 420px;
+
+    view-timeline-name: --process-cards;
+    view-timeline-axis: block;
 }
 
 @media (max-width: 767px) {
@@ -859,44 +832,119 @@ select {
     }
 }
 
-
 .process-card {
     max-width: 1296px;
     width: 100%;
+
+    /* FIX v2: visina vezana za viewport (100vh) umesto fiksnog piksela.
+       Ovo daje prirodan "deck of cards" tempo — svaka sledeca kartica
+       stiže odozdo i postepeno prekriva prethodnu tokom celog skrola
+       jednog ekrana, bez "mrtve zone" gde se ništa ne dešava.
+       Igraj se sa ovom vrednošću: manje (npr. 70vh) = brži tempo,
+       više (npr. 120vh) = sporiji, dramatičniji prelaz. */
+    height: 100vh;
+
+    --index0: calc(var(--index) - 1);
+    --reverse-index: calc(var(--numcards) - var(--index0));
+    --reverse-index0: calc(var(--reverse-index) - 1);
+}
+
+.process-card:nth-child(1) {
+    --index: 1;
+}
+
+.process-card:nth-child(2) {
+    --index: 2;
+}
+
+.process-card:nth-child(3) {
+    --index: 3;
+}
+
+.process-card:nth-child(4) {
+    --index: 4;
+}
+
+.process-card:nth-child(5) {
+    --index: 5;
+}
+
+.process-card-inner {
+    position: sticky;
+    top: 120px;
+
+    width: 100%;
     height: 363px;
+
     overflow: hidden;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     border: 1px solid #93233966;
     border-radius: 8px;
-    position: sticky;
-    top: 120px;
+
     background-color: var(--clr-bg);
+
+    transform-origin: center top;
+
+    --start-range: calc(var(--index0) / var(--numcards) * 100%);
+    --end-range: calc(var(--index) / var(--numcards) * 100%);
 }
 
-.process-card:nth-child(1) { top: 120px; }
-.process-card:nth-child(2) { top: 144px; }
-.process-card:nth-child(3) { top: 168px; }
-.process-card:nth-child(4) { top: 192px; }
-.process-card:nth-child(5) { top: 216px; }
+/* FIX: @supports guard — u Firefox-u (dok animation-timeline nije
+   podrazumevano uklju\u010den) kartice ostaju normalne i vidljive,
+   umesto da se "zaglave" u po\u010detnom stanju bez animacije. */
+@supports (animation-timeline: view()) {
+    .process-card-inner {
+        animation: linear scale-card forwards;
+        /* FIX: Firefox zahteva animation-duration razli\u010dit od 0
+           da bi scroll-driven animacija uop\u0161te radila. */
+        animation-duration: 1ms;
+        animation-timeline: --process-cards;
+        animation-range:
+            exit-crossing var(--start-range)
+            exit-crossing var(--end-range);
+    }
+}
+
+@keyframes scale-card {
+    to {
+        transform:
+            scale(
+                calc(
+                    1.1 - calc(0.1 * var(--reverse-index))
+                )
+            );
+    }
+}
 
 @media (max-width: 767px) {
     .process-card {
-        flex-direction: column;
         max-width: 400px;
+        height: 100vh; /* FIX v2: ista logika i za mobilni prikaz */
+    }
+
+    .process-card-inner {
         height: 520px;
+
+        flex-direction: column;
         justify-content: flex-start;
+
         gap: 48px;
     }
 }
 
+/* PROCESS CONTENT */
 
 .process-content {
     padding-top: 32px;
     padding-left: 72px;
+
     width: 100%;
+
     position: relative;
 }
 
@@ -927,8 +975,10 @@ select {
     font-family: var(--ff-heading);
     font-size: 30px;
     line-height: 30px;
+
     margin-top: 12px;
     margin-bottom: 24px;
+
     color: var(--clr-white);
 }
 
@@ -943,12 +993,17 @@ select {
     max-width: 400px;
 }
 
+/* STEP NUMBER */
+
 .number-step-wrapper {
     width: 120px;
     height: 134px;
+
     position: absolute;
+
     top: -20%;
     left: 25%;
+
     z-index: -100;
 }
 
@@ -956,6 +1011,7 @@ select {
     .number-step-wrapper {
         width: 88px;
         height: 98px;
+
         top: -10%;
         left: 25%;
     }
@@ -965,19 +1021,20 @@ select {
     .number-step-wrapper {
         width: 72px;
         height: 81px;
+
         top: 15%;
         left: 20%;
     }
 }
 
-.process-image-wrapper {
-    width: 100%;
+.number-step {
+    opacity: 0.1;
 }
 
-@media (max-width: 992px) {
-    .process-image-wrapper {
-        width: 100%;
-    }
+/* PROCESS IMAGE */
+
+.process-image-wrapper {
+    width: 100%;
 }
 
 .process-image {
@@ -992,33 +1049,28 @@ select {
     }
 }
 
-.number-step {
-    opacity: 0.1;
-}
-
 .process-img {
     opacity: 0.5;
 }
 
+/* QUALITY IMAGE */
 
 @media (max-width: 992px) {
-.is-quality {
+    .is-quality {
         max-width: 416px;
+
         position: absolute;
+
         right: 0;
         top: 80px;
     }
 }
 
 @media (max-width: 767px) {
-.is-quality {
+    .is-quality {
         position: static;
     }
 }
-
-
-
-
 
 .section-about {
     padding-top: 96px;
@@ -1216,8 +1268,6 @@ select {
     }
 }
 
-
-
 .about-img {
     opacity: 0.2;
 }
@@ -1230,10 +1280,6 @@ select {
         opacity: 0.4;
     }
 }
-
-
-
-
 
 .section-faq {
     padding-top: 96px;
@@ -1267,7 +1313,6 @@ select {
     gap: 16px;
 }
 
-
 @media (max-width: 992px) {
     .faq-main-wrapper {
         flex-direction: column;
@@ -1281,8 +1326,6 @@ select {
         gap: 32px;
     }
 }
-
-
 
 @media (max-width: 992px) {
     .faq-content {
@@ -1451,7 +1494,6 @@ select {
     padding-top: 32px;
 }
 
-
 .section-contact {
     padding-top: 96px;
     padding-bottom: 96px;
@@ -1594,8 +1636,6 @@ select {
     max-width: 300px;
 }
 
-
-
 .social-media-wrapper {
     display: flex;
     gap: 16px;
@@ -1677,7 +1717,6 @@ select {
     color: #D9D9D9CC;
 }
 
-
 .form-input,
 .form-textarea {
     color: #F5F5F5;
@@ -1710,7 +1749,6 @@ select {
         height: 90px;
     }
 }
-
 
 .form-input:focus,
 .form-textarea:focus {
@@ -1757,9 +1795,6 @@ select {
         font-size: 16px;
     }
 }
-
-
-
 
 .footer {
     padding-top: 72px;
@@ -1824,8 +1859,6 @@ select {
     font-size: 16px;
     color: var(--clr-white);
 }
-
-
 
 .footer-bottom {
     display: flex;
