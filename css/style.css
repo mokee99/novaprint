@@ -2741,6 +2741,12 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     }
 }
 
+.form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
 
 /* =========================
    ERROR MESSAGE

@@ -288,3 +288,49 @@ if (contactSection) {
 
   contactObserver.observe(contactSection);
 }
+
+/* =========================
+   NETLIFY CONTACT FORM
+========================= */
+
+const contactForm = document.querySelector(".contact-form");
+
+if (contactForm) {
+    const submitButton = contactForm.querySelector(".form-submit");
+    const defaultButtonText = submitButton.textContent;
+
+    contactForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        contactForm.classList.remove("is-error");
+
+        submitButton.disabled = true;
+        submitButton.textContent = "SENDING...";
+
+        const formData = new FormData(contactForm);
+
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams(formData).toString()
+            });
+
+            if (!response.ok) {
+                throw new Error("Form submission failed");
+            }
+
+            contactForm.reset();
+            contactForm.classList.add("is-success");
+        } catch (error) {
+            console.error("Contact form error:", error);
+
+            contactForm.classList.add("is-error");
+
+            submitButton.disabled = false;
+            submitButton.textContent = defaultButtonText;
+        }
+    });
+}
