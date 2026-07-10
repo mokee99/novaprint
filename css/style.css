@@ -584,15 +584,9 @@ body.is-loading {
     }
 }
 
-
 /* =========================
    HERO IMAGE
 ========================= */
-
-.hero-image {
-    position: relative;
-    z-index: 2;
-}
 
 .hero-image img {
     width: 700px;
@@ -622,10 +616,10 @@ body.is-loading {
 
 @media (max-width: 992px) {
     .hero-image {
-        align-self: center;
-
         position: relative;
         z-index: 2;
+
+        align-self: center;
     }
 
     .hero-image img {
@@ -639,6 +633,8 @@ body.is-loading {
         transform: none;
     }
 }
+
+
 
 
 /* =========================
