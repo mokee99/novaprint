@@ -173,27 +173,69 @@ document.addEventListener("DOMContentLoaded", () => {
     initializePreloader();
 });
 
+/* =========================
+   NAVIGATION MENU
+========================= */
+
 const header = document.querySelector(".header");
 const menuButton = document.querySelector(".menu-button");
 const navLinks = document.querySelectorAll(".nav-link a");
 const ctaButton = document.querySelector(".cta-button");
 
-menuButton.addEventListener("click", () => {
-    header.classList.toggle("is-open");
-    document.body.classList.toggle("no-scroll");
-});
+function closeMenu() {
+    header.classList.remove("is-open");
+    document.body.classList.remove("no-scroll");
+}
+
+function navigateToSection(link, event) {
+    const targetId = link.getAttribute("href");
+
+    if (!targetId || !targetId.startsWith("#")) {
+        return;
+    }
+
+    const targetSection = document.querySelector(targetId);
+
+    if (!targetSection) {
+        return;
+    }
+
+    event.preventDefault();
+
+    closeMenu();
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            targetSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            history.pushState(null, "", targetId);
+        });
+    });
+}
+
+if (header && menuButton) {
+    menuButton.addEventListener("click", () => {
+        const menuIsOpen = header.classList.toggle("is-open");
+
+        document.body.classList.toggle("no-scroll", menuIsOpen);
+    });
+}
 
 navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-        header.classList.remove("is-open");
-        document.body.classList.remove("no-scroll");
+    link.addEventListener("click", (event) => {
+        navigateToSection(link, event);
     });
 });
 
-ctaButton.addEventListener("click", () => {
-    header.classList.remove("is-open");
-    document.body.classList.remove("no-scroll");
-});
+if (ctaButton) {
+    ctaButton.addEventListener("click", (event) => {
+        navigateToSection(ctaButton, event);
+    });
+}
+
 
 const servicesSection = document.querySelector(".section-services");
 const serviceCards = document.querySelectorAll(".services-card");
