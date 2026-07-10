@@ -230,6 +230,13 @@ select {
     z-index: 999;
 }
 
+@media (max-width: 767px) {
+    .nav-menu {
+        height: auto;
+        min-height: auto;
+    }
+}
+
 .menu-container { 
     max-width: 1800px;
     padding-inline: 0.75rem;
@@ -286,6 +293,9 @@ select {
     }
 }
 
+
+
+
 .section-hero {
     width: 100%;
     
@@ -311,10 +321,14 @@ select {
 @media (max-width: 992px) {
     .hero-content {
         justify-content: center;
-        padding-top: 120px;
+        padding-top: 180px;
+        height: auto;
+        min-height: auto;
         
     }
 }
+
+
 
 .heading-wrapper {
     display: flex;
@@ -493,10 +507,6 @@ select {
     max-width: 1296px;
     margin-inline: auto;
     padding-inline: 0.75rem;
-    /* FIX: overflow: hidden ovde je bio drugi krivac. .container-md
-       je direktni roditelj .process-cards-wrapper, pa je i on
-       pravio scroll container koji je lomio sticky. overflow: clip
-       je bezbedna zamena (isti vizuelni efekat, ne kvari sticky). */
     overflow: clip;
 }
 
@@ -777,6 +787,9 @@ select {
     }
 }
 
+
+
+
 .process-header {
     display: flex;
     flex-direction: row;
@@ -810,69 +823,88 @@ select {
     max-width: 450px;
 }
 
-/* PROCESS CARDS */
+
 
 .process-cards-wrapper {
     --numcards: 5;
 
     display: flex;
     flex-direction: column;
-    gap: 0;
 
-    padding-bottom: 420px;
+    width: 100%;
+
+    padding-bottom: 0;
+    margin-bottom: -55vh;
 
     view-timeline-name: --process-cards;
     view-timeline-axis: block;
 }
 
-@media (max-width: 767px) {
-    .process-cards-wrapper {
-        justify-content: center;
-        align-items: center;
-    }
-}
+
 
 .process-card {
     max-width: 1296px;
     width: 100%;
+    height: 363px;
 
-    /* FIX v2: visina vezana za viewport (100vh) umesto fiksnog piksela.
-       Ovo daje prirodan "deck of cards" tempo — svaka sledeca kartica
-       stiže odozdo i postepeno prekriva prethodnu tokom celog skrola
-       jednog ekrana, bez "mrtve zone" gde se ništa ne dešava.
-       Igraj se sa ovom vrednošću: manje (npr. 70vh) = brži tempo,
-       više (npr. 120vh) = sporiji, dramatičniji prelaz. */
-    height: 100vh;
+    position: sticky;
+
+    margin-bottom: 55vh;
 
     --index0: calc(var(--index) - 1);
     --reverse-index: calc(var(--numcards) - var(--index0));
     --reverse-index0: calc(var(--reverse-index) - 1);
 }
 
+
+
+
 .process-card:nth-child(1) {
     --index: 1;
+
+    top: 120px;
+
+    z-index: 1;
 }
 
 .process-card:nth-child(2) {
     --index: 2;
+
+    top: 144px;
+
+    z-index: 2;
 }
 
 .process-card:nth-child(3) {
     --index: 3;
+
+    top: 168px;
+
+    z-index: 3;
 }
 
 .process-card:nth-child(4) {
     --index: 4;
+
+    top: 192px;
+
+    z-index: 4;
 }
 
 .process-card:nth-child(5) {
     --index: 5;
+
+    top: 216px;
+
+    z-index: 5;
+
+    margin-bottom: 55vh;
 }
 
-.process-card-inner {
-    position: sticky;
-    top: 120px;
 
+
+
+.process-card-inner {
     width: 100%;
     height: 363px;
 
@@ -890,41 +922,104 @@ select {
 
     transform-origin: center top;
 
-    --start-range: calc(var(--index0) / var(--numcards) * 100%);
-    --end-range: calc(var(--index) / var(--numcards) * 100%);
+    --start-range:
+        calc(var(--index0) / var(--numcards) * 100%);
+
+    --end-range:
+        calc(var(--index) / var(--numcards) * 100%);
+
+    animation-name: scale-card;
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    animation-timeline: --process-cards;
+
+    animation-range:
+        exit-crossing var(--start-range)
+        exit-crossing var(--end-range);
 }
 
-/* FIX: @supports guard — u Firefox-u (dok animation-timeline nije
-   podrazumevano uklju\u010den) kartice ostaju normalne i vidljive,
-   umesto da se "zaglave" u po\u010detnom stanju bez animacije. */
-@supports (animation-timeline: view()) {
-    .process-card-inner {
-        animation: linear scale-card forwards;
-        /* FIX: Firefox zahteva animation-duration razli\u010dit od 0
-           da bi scroll-driven animacija uop\u0161te radila. */
-        animation-duration: 1ms;
-        animation-timeline: --process-cards;
-        animation-range:
-            exit-crossing var(--start-range)
-            exit-crossing var(--end-range);
-    }
-}
+
+
 
 @keyframes scale-card {
     to {
         transform:
             scale(
                 calc(
-                    1.1 - calc(0.1 * var(--reverse-index))
+                    1.1 -
+                    calc(
+                        0.1 * var(--reverse-index)
+                    )
                 )
             );
     }
 }
 
+
+
+
+@media (max-width: 992px) {
+    .process-card:nth-child(1) {
+        top: 96px;
+    }
+
+    .process-card:nth-child(2) {
+        top: 116px;
+    }
+
+    .process-card:nth-child(3) {
+        top: 136px;
+    }
+
+    .process-card:nth-child(4) {
+        top: 156px;
+    }
+
+    .process-card:nth-child(5) {
+        top: 176px;
+    }
+}
+
+
+
+
 @media (max-width: 767px) {
+    .process-cards-wrapper {
+        align-items: center;
+
+        padding-bottom: 0;
+        margin-bottom: -60vh;
+    }
+
     .process-card {
         max-width: 400px;
-        height: 100vh; /* FIX v2: ista logika i za mobilni prikaz */
+        height: 520px;
+
+        margin-bottom: 60vh;
+    }
+
+    .process-card:nth-child(1) {
+        top: 72px;
+    }
+
+    .process-card:nth-child(2) {
+        top: 88px;
+    }
+
+    .process-card:nth-child(3) {
+        top: 104px;
+    }
+
+    .process-card:nth-child(4) {
+        top: 120px;
+    }
+
+    .process-card:nth-child(5) {
+        top: 136px;
+
+        margin-bottom: 60vh;
     }
 
     .process-card-inner {
@@ -937,7 +1032,8 @@ select {
     }
 }
 
-/* PROCESS CONTENT */
+
+
 
 .process-content {
     padding-top: 32px;
@@ -959,20 +1055,30 @@ select {
     .process-content {
         padding-left: 24px;
         padding-right: 24px;
-        width: 100%;
         padding-top: 72px;
+
+        width: 100%;
     }
 }
 
+
+
+
 .small-label {
     color: var(--clr-red);
+
     font-family: var(--ff-heading);
+
     font-size: 16px;
     line-height: 16px;
 }
 
+
+
+
 .process-small-heading {
     font-family: var(--ff-heading);
+
     font-size: 30px;
     line-height: 30px;
 
@@ -989,11 +1095,15 @@ select {
     }
 }
 
+
+
+
 .process-small-paragraph {
     max-width: 400px;
 }
 
-/* STEP NUMBER */
+
+
 
 .number-step-wrapper {
     width: 120px;
@@ -1031,7 +1141,7 @@ select {
     opacity: 0.1;
 }
 
-/* PROCESS IMAGE */
+
 
 .process-image-wrapper {
     width: 100%;
@@ -1053,7 +1163,8 @@ select {
     opacity: 0.5;
 }
 
-/* QUALITY IMAGE */
+
+
 
 @media (max-width: 992px) {
     .is-quality {
