@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js" defer></script>
+    <script src="./js/script.js?v=2" defer></script>
 
 </head>
-<body>
+<body class="is-loading">
+
+    <div class="preloader" aria-hidden="true">
+        <div class="preloader-glow"></div>
+        <div class="preloader-progress">
+            <span class="preloader-number">0</span><span>%</span>
+        </div>
+    </div>
 
     <header class="header">
         <div class="navbar">
@@ -63,7 +70,7 @@
                 </div>
 
                 <div class="hero-image">
-                    <img src="./assets/images/hero-model.webp" alt="3D printed sculpture">
+                    <img src="./assets/images/hero-model.webp" alt="3D printed sculpture" fetchpriority="high">
                 </div>
                 
                 <p class="hero-paragraph">Nova Print delivers precision 3D printing for custom products, detailed miniatures, functional prototypes, and creative concepts — crafted with accuracy, quality, and attention to every detail.</p>
@@ -133,7 +140,7 @@
                         <div class="card-content content-vertical">
                             <span class="service-number">03</span>
                             <h3 class="service-heading">ARCHITECTURE MODELS</h3>
-                            <p class="service-paragraph">Detailed architectural scale models created for presentations, urban concepts, and project visualization. Designed to showcase form, structure, and spatial detail with precision.</p>
+                            <p class="service-paragraph is-short">Detailed architectural scale models created for presentations, urban concepts, and project visualization. Designed to showcase form, structure, and spatial detail with precision.</p>
                         </div>
                         
                         <div class="line horizontal"></div>
@@ -382,7 +389,7 @@
                         <button class="faq-question">
                                 <div class="faq-question-content">
                                     <span class="faq-number">01</span>
-                                    <h3 class="faq-question-heading">WHAT SERVICES DO YOU OFFER</h3>
+                                    <h3 class="faq-question-heading">WHAT SERVICES DO YOU OFFER?</h3>
                                 </div>
                                 <div class="faq-icon">
                                     <img class="faq-plus-icon" src="./assets/icons/plus.svg" alt="">
@@ -450,7 +457,7 @@
                         <button class="faq-question">
                                 <div class="faq-question-content">
                                     <span class="faq-number">04</span>
-                                    <h3 class="faq-question-heading">HOW MUCH DO YOU SERVICES COST</h3>
+                                    <h3 class="faq-question-heading">HOW MUCH DO YOU SERVICES COST?</h3>
                                 </div>
                                 <div class="faq-icon">
                                     <img class="faq-plus-icon" src="./assets/icons/plus.svg" alt="">
@@ -528,7 +535,7 @@
                     <div class="contact-header">
                         <span class="label">CONTACT US</span>
                         <h2 class="second-heading contact-heading">LET'S BUILD SOMETHING UNIQUE</h2>
-                        <p class="contact-paragraph">Have a project in mind or need more information? We’d love to here from you.</p>
+                        <p class="contact-paragraph">Have a project in mind or need more information? We’d love to hear from you.</p>
                     </div>
                     <div class="contact-info-main">
                         <div class="contant-info">
@@ -581,38 +588,50 @@
                 </div>
                 <form class="contact-form" name="contact" method="POST" data-netlify="true">
                     <input type="hidden" name="form-name" value="contact">
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3 class="form-heading">SEND US A MESSAGE</h3>
+                            <p class="form-paragraph">Fill out the form below and we’ll get back to you as soon as possible.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="full-name">FULL NAME</label>
+                            <input class="form-input" id="full-name" name="full-name" type="text" placeholder="Your full name" required>
+                        </div>
 
-                    <div class="form-header">
-                        <h3 class="form-heading">SEND US A MESSAGE</h3>
-                        <p class="form-paragraph">Fill out the form below and we’ll get back to you as soon as possible.</p>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="full name">FULL NAME</label>
-                        <input class="form-input" id="full-name" name="full-name" type="text" placeholder="Your full name" required>
+                        <div class="form-group">
+                            <label class="form-label" for="email">EMAIL</label>
+                            <input class="form-input" id="email" name="email" type="email" placeholder="Your email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">PHONE NUMBER</label>
+                            <input class="form-input" id="phone" name="phone" type="tel" placeholder="Your phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="service">SERVICE TYPE</label>
+                            <input class="form-input" id="service" name="service" type="text" placeholder="Services you are interested in" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">MESSAGE</label>
+                            <textarea class="form-textarea" id="message" name="message" placeholder="Your message" required></textarea>
+                        </div>
+
+                        <button class="form-submit" type="submit">SUBMIT MESSAGE</button>
+
+                        <div class="form-error" role="alert" aria-live="polite">
+                            <p class="form-error-text">Something went wrong. Please try again.</p>
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="email">EMAIL</label>
-                        <input class="form-input" id="email" name="email" type="email" placeholder="Your email address" required>
+                    <div class="form-success" aria-live="polite">
+                        <img class="form-success-icon" src="./assets/icons/check.svg" alt="">
+                        <span class="form-success-title">MESSAGE SENT</span>
+                        <p class="form-success-text">Thanks for reaching out. We’ll get back to you as soon as possible.</p>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="phone">PHONE NUMBER</label>
-                        <input class="form-input" id="phone" name="phone" type="tel" placeholder="Your phone number" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="service">WHAT SERVICES ARE YOU LOOKING FOR</label>
-                        <input class="form-input" id="service" name="service" type="text" placeholder="Services you are interested in" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="message">MESSAGE</label>
-                        <textarea class="form-textarea" id="message" name="message" placeholder="Your message" required></textarea>
-                    </div>
-
-                    <button class="form-submit" type="submit">SUBMIT MESSAGE</button>
 
                 </form> 
 
