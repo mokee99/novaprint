@@ -42,13 +42,7 @@ body {
 
     line-height: 1.5;
 
-    /* FIX: overflow-x: hidden ovde je pravio problem — po CSS spec-u,
-       kad overflow-x nije "visible", browser automatski postavlja
-       overflow-y na "auto", pa body postaje scroll container i
-       LOMI position: sticky na CELOM sajtu (uklju\u010duju\u0107i process
-       sekciju). overflow: clip radi isti vizuelni posao (spre\u010dava
-       horizontalni skrol) ali NE pravi scroll container, pa sticky
-       radi normalno. */
+
     overflow-x: clip;
 }
 
@@ -1041,6 +1035,7 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 @media (max-width: 767px) {
     .card-content {
         width: 100%;
+        padding: 24px;
     }
 }
 
@@ -1256,6 +1251,7 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 @media (max-width: 767px) {
     .content-vertical {
         height: auto;
+        padding: 24px;
     }
 }
 
@@ -1859,6 +1855,16 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     flex-direction: column;
 }
 
+@media (max-width: 479px) {
+    .about-stat {
+        flex-direction: row;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}
+
+
+
 .about-icon-wrapper {
     max-width: 64px;
     width: 100%;
@@ -1870,6 +1876,11 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     }
 }
 
+.first-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
 .about-stat-value {
     font-family: var(--ff-heading);
     font-size: 24px;
@@ -1878,6 +1889,13 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 
     margin-top: 16px;
     margin-bottom: 16px;
+}
+
+@media (max-width: 479px) {
+    .about-stat-value {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
 }
 
 .about-stat-title {
@@ -2292,6 +2310,7 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 .section-contact {
     padding-top: 96px;
     padding-bottom: 96px;
+    position: relative;
 }
 
 @media (max-width: 992px) {
@@ -2944,6 +2963,20 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
     .form-success {
         transition: none;
     }
+}
+
+.cta-bg-img {
+    max-width: 1300px;
+    width: 100%;
+    position: absolute;
+    z-index: -20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cta-img {
+    opacity: 0.12;
 }
 
 .footer {

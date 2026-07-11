@@ -177,8 +177,10 @@ document.addEventListener("DOMContentLoaded", () => {
    NAVIGATION MENU
 ========================= */
 
+
 const header = document.querySelector(".header");
 const menuButton = document.querySelector(".menu-button");
+const navbarLogo = document.querySelector(".navbar-logo");
 const navLinks = document.querySelectorAll(".nav-link a");
 const ctaButton = document.querySelector(".cta-button");
 
@@ -221,6 +223,12 @@ if (header && menuButton) {
         const menuIsOpen = header.classList.toggle("is-open");
 
         document.body.classList.toggle("no-scroll", menuIsOpen);
+    });
+}
+
+if (navbarLogo) {
+    navbarLogo.addEventListener("click", (event) => {
+        navigateToSection(navbarLogo, event);
     });
 }
 
