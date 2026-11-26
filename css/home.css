@@ -1,105 +1,11 @@
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@font-face {
-    font-family: "Epic Pro";
-    src: url("../assets/fonts/gc-epicpro.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("../assets/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
-}
-
-:root {
-    --clr-bg: #090908;
-    --clr-red: #932339;
-    --clr-white: #f5f5f5;
-
-    --ff-heading: "Epic Pro", sans-serif;
-    --ff-body: "Inter", sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: var(--clr-bg);
-    color: var(--clr-white);
-
-    font-family: var(--ff-body);
-    font-size: 17px;
-
-    line-height: 1.5;
-
-
-    overflow-x: clip;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-ul {
-    list-style: none;
-}
-
-button {
-    border: none;
-    background: none;
-
-    cursor: pointer;
-
-    font: inherit;
-}
-
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-/* =========================
-   PAGE LOADING STATE
-========================= */
-
-body.is-loading {
-    overflow: hidden;
-}
-
-
-/* =========================
-   PRELOADER
-========================= */
-
 .preloader {
     --loader-scale: 0.25;
     --loader-opacity: 0.25;
-
     position: fixed;
     inset: 0;
     z-index: 9999;
-
     overflow: hidden;
-
     background-color: var(--clr-bg);
-
     transition:
         background-color 700ms ease,
         opacity 500ms ease,
@@ -109,21 +15,15 @@ body.is-loading {
 .preloader-glow {
     width: 400px;
     height: 500px;
-
     position: absolute;
     top: 50%;
     left: 50%;
-
     background-color: var(--clr-red);
-
     filter: blur(120px);
-
     opacity: var(--loader-opacity);
-
     transform:
         translate(-50%, -50%)
         scale(var(--loader-scale));
-
     transition:
         opacity 150ms linear,
         transform 150ms linear;
@@ -133,16 +33,12 @@ body.is-loading {
     position: absolute;
     right: clamp(24px, 4vw, 72px);
     bottom: clamp(24px, 4vw, 56px);
-
     display: flex;
     align-items: baseline;
-
     font-family: var(--ff-heading);
     font-size: clamp(72px, 9vw, 140px);
     line-height: 0.8;
-
     color: var(--clr-white);
-
     transition:
         opacity 350ms ease,
         transform 350ms ease;
@@ -169,26 +65,22 @@ body.is-loading {
     pointer-events: none;
 }
 
+/* MOBILE PORTRAIT */
+
 @media (max-width: 479px) {
     .preloader-glow {
         width: 300px;
         height: 350px;
-
         filter: blur(90px);
     }
 
     .preloader-progress {
         right: 20px;
         bottom: 28px;
-
         font-size: 72px;
     }
 }
 
-
-/* =========================
-   HEADER
-========================= */
 
 .header {
     position: relative;
@@ -196,29 +88,11 @@ body.is-loading {
 
 .navbar {
     width: 100%;
-
     padding-top: 40px;
     padding-bottom: 24px;
-
     position: absolute;
     top: 0;
     z-index: 1000;
-}
-
-@media (max-width: 767px) {
-    .navbar {
-        padding-top: 24px;
-    }
-}
-
-@media (max-width: 767px) and (orientation: landscape) {
-    .navbar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-
-        background-color: var(--clr-bg);
-    }
 }
 
 .navbar-container {
@@ -228,28 +102,14 @@ body.is-loading {
     gap: 12px;
 }
 
-@media (max-width: 992px) {
-    .navbar-container {
-        padding-top: 0;
-    }
-}
-
 .navbar-logo {
     display: block;
-
     width: 275px;
 }
 
 .navbar-logo img {
     display: block;
-
     width: 100%;
-}
-
-@media (max-width: 767px) {
-    .navbar-logo {
-        max-width: 160px;
-    }
 }
 
 .buttons-wrapper {
@@ -260,21 +120,16 @@ body.is-loading {
 .cta-button {
     width: 150px;
     height: 44px;
-
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
     font-family: var(--ff-body);
     font-size: 16px;
     line-height: 16px;
     font-weight: 500;
-
     color: var(--clr-bg);
     background-color: #d9d9d9;
-
     border-radius: 8px;
-
     transition:
         background-color 300ms ease,
         border-radius 300ms ease;
@@ -285,43 +140,25 @@ body.is-loading {
     border-radius: 25px;
 }
 
-@media (max-width: 767px) {
-    .cta-button {
-        display: none;
-    }
-}
-
 .menu-button {
     width: 130px;
     height: 44px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-
     font-family: var(--ff-body);
     font-size: 16px;
     line-height: 16px;
     font-weight: 500;
-
     color: var(--clr-white);
     background-color: var(--clr-red);
-
     border: 1px solid transparent;
     border-radius: 8px;
-
     transition:
         background-color 1.2s ease,
         border-radius 1.2s ease,
         border-color 1.2s ease;
-}
-
-@media (max-width: 479px) {
-    .menu-button {
-        width: 120px;
-        height: 40px;
-    }
 }
 
 .hamburger-icon {
@@ -330,7 +167,6 @@ body.is-loading {
 
 .close-icon {
     display: none;
-
     width: 24px;
 }
 
@@ -348,38 +184,67 @@ body.is-loading {
 
 .header.is-open .menu-button {
     background-color: transparent;
-
     border-color: #f5f5f5;
     border-radius: 25px;
 }
 
-.no-scroll {
-    overflow: hidden;
+/* TABLET */
+
+@media (max-width: 992px) {
+    .navbar-container {
+        padding-top: 0;
+    }
 }
 
+/* MOBILE */
 
-/* =========================
-   NAVIGATION OVERLAY
-========================= */
+@media (max-width: 767px) {
+    .navbar {
+        padding-top: 24px;
+    }
+
+    .navbar-logo {
+        max-width: 160px;
+    }
+
+    .cta-button {
+        display: none;
+    }
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .menu-button {
+        width: 120px;
+        height: 40px;
+    }
+}
+
+/* MOBILE LANDSCAPE */
+
+@media (max-width: 767px) and (orientation: landscape) {
+    .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: var(--clr-bg);
+    }
+}
+
 
 .nav-menu {
     width: 100%;
     height: 100vh;
     height: 100dvh;
-
     position: absolute;
     inset: 0;
     z-index: 999;
-
     overflow-y: auto;
-
     background-color: var(--clr-bg);
-
     clip-path: circle(0% at 95% 5%);
-
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-
     transition:
         clip-path 1.2s cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -387,7 +252,6 @@ body.is-loading {
 .menu-container {
     max-width: 1800px;
     height: 100%;
-
     margin-inline: auto;
     padding-top: 180px;
     padding-inline: 0.75rem;
@@ -403,9 +267,17 @@ body.is-loading {
     font-family: var(--ff-heading);
     font-size: 120px;
     line-height: 120px;
-
     color: var(--clr-white);
 }
+
+.menu-info-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    padding-top: 140px;
+}
+
+/* TABLET */
 
 @media (max-width: 992px) {
     .nav-link {
@@ -414,126 +286,66 @@ body.is-loading {
     }
 }
 
+/* MOBILE */
+
 @media (max-width: 767px) {
     .nav-link {
         font-size: 60px;
         line-height: 60px;
     }
+
+    .menu-info-wrapper {
+        flex-direction: column;
+        gap: 16px;
+        padding-bottom: 24px;
+    }
+
+    .menu-container {
+        padding-top: 120px;
+    }
 }
+
+/* MOBILE PORTRAIT */
 
 @media (max-width: 479px) {
     .nav-link {
         font-size: 48px;
         line-height: 48px;
     }
-}
 
-.menu-info-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    gap: 24px;
-
-    padding-top: 140px;
-}
-
-@media (max-width: 767px) {
-    .menu-info-wrapper {
-        flex-direction: column;
-        gap: 16px;
-        padding-bottom: 24px;
+    .menu-container {
+        padding-top: 140px;
     }
 }
 
-
-/* =========================
-   HERO
-========================= */
 
 .section-hero {
     width: 100%;
 }
 
-.container-lg {
-    max-width: 1800px;
-
-    margin-inline: auto;
-    padding-inline: 0.75rem;
-
-    overflow: hidden;
-}
-
 .hero-content {
     width: 100%;
     height: 100vh;
-
     position: relative;
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
     isolation: isolate;
 }
 
-@media (max-width: 992px) {
-    .hero-content {
-        height: auto;
-        min-height: auto;
-
-        justify-content: center;
-
-        padding-top: 180px;
-        padding-bottom: 72px;
-    }
-}
-
-
-/* =========================
-   HERO HEADINGS
-========================= */
-
 .heading-wrapper {
     width: 100%;
-
     position: relative;
     z-index: 3;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-@media (max-width: 992px) {
-    .heading-wrapper {
-        width: 100%;
-
-        flex-direction: column;
-    }
-}
-
 .hero-heading {
     font-family: var(--ff-heading);
     font-size: 120px;
-
     color: var(--clr-white);
-}
-
-@media (max-width: 1600px) {
-    .hero-heading {
-        font-size: 100px;
-    }
-}
-
-@media (max-width: 1400px) {
-    .hero-heading {
-        font-size: 90px;
-    }
-}
-
-@media (max-width: 1280px) {
-    .hero-heading {
-        font-size: 80px;
-    }
 }
 
 .hero-heading-left {
@@ -544,136 +356,35 @@ body.is-loading {
     margin-top: 360px;
 }
 
-@media (max-width: 992px) {
-    .hero-heading-left,
-    .hero-heading-right {
-        font-size: 96px;
-        line-height: 96px;
-    }
-
-    .hero-heading-left {
-        margin-top: 0;
-    }
-
-    .hero-heading-right {
-        align-self: flex-end;
-
-        margin-top: 0;
-    }
-}
-
-@media (max-width: 767px) {
-    .hero-heading-left,
-    .hero-heading-right {
-        font-size: 72px;
-        line-height: 72px;
-    }
-}
-
-@media (max-width: 479px) {
-    .hero-heading-left,
-    .hero-heading-right {
-        font-size: 50px;
-        line-height: 50px;
-    }
-}
-
-/* =========================
-   HERO IMAGE
-========================= */
-
 .hero-image img {
     width: 700px;
     max-width: 100%;
     height: auto;
-
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 2;
-
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 1600px) {
-    .hero-image img {
-        width: 600px;
-    }
-}
-
-@media (max-width: 1280px) {
-    .hero-image img {
-        width: 520px;
-        left: 53%;
-    }
-}
-
-@media (max-width: 992px) {
-    .hero-image {
-        position: relative;
-        z-index: 2;
-
-        align-self: center;
-    }
-
-    .hero-image img {
-        width: 450px;
-
-        position: relative;
-        top: auto;
-        left: auto;
-        z-index: 2;
-
-        transform: none;
-    }
-}
-
-
-
-
-/* =========================
-   HERO PARAGRAPH
-========================= */
-
 .hero-paragraph {
     max-width: 400px;
-
     position: absolute;
     left: 0;
     bottom: 120px;
     z-index: 3;
 }
 
-@media (max-width: 992px) {
-    .hero-paragraph {
-        position: static;
-
-        margin-top: 32px;
-
-        transform: none;
-    }
-}
-
-
-/* =========================
-   HERO GLOW
-========================= */
-
 .hero-glow {
     width: 400px;
     height: 500px;
-
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 0;
-
     background-color: var(--clr-red);
-
     filter: blur(120px);
-
     transform: translate(-50%, -50%) scale(1);
-
     animation:
         hero-glow-move 7s ease-in-out infinite alternate;
 }
@@ -683,56 +394,34 @@ body.is-loading {
         transform: translate(-53%, -47%) scale(0.95);
         opacity: 0.65;
     }
-
     50% {
         transform: translate(-47%, -53%) scale(1.08);
         opacity: 0.9;
     }
-
     100% {
         transform: translate(-51%, -49%) scale(1);
         opacity: 0.75;
     }
 }
 
-@media (max-width: 479px) {
-    .hero-glow {
-        width: 300px;
-        height: 350px;
-
-        filter: blur(90px);
-
-        animation-duration: 8s;
-    }
-}
-
-
-/* =========================
-   INITIAL HERO STATE
-========================= */
-
 body.is-loading .navbar-logo,
 body.is-loading .buttons-wrapper {
     opacity: 0;
-
     transform: translateY(-24px);
 }
 
 body.is-loading .hero-heading-left {
     opacity: 0;
-
     transform: translateX(-100px);
 }
 
 body.is-loading .hero-heading-right {
     opacity: 0;
-
     transform: translateX(100px);
 }
 
 body.is-loading .hero-image img {
     opacity: 0;
-
     transform:
         translate(-50%, -46%)
         scale(0.96);
@@ -740,24 +429,16 @@ body.is-loading .hero-image img {
 
 body.is-loading .hero-paragraph {
     opacity: 0;
-
     transform: translateY(32px);
 }
 
 body.is-loading .hero-glow {
     opacity: 0;
-
     animation: none;
-
     transform:
         translate(-50%, -50%)
         scale(0.9);
 }
-
-
-/* =========================
-   HERO REVEAL
-========================= */
 
 .navbar-logo,
 .buttons-wrapper {
@@ -793,7 +474,6 @@ body.is-loading .hero-glow {
 
 body.intro-reveal .hero-glow {
     opacity: 0.8;
-
     transform:
         translate(-50%, -50%)
         scale(1);
@@ -801,41 +481,117 @@ body.intro-reveal .hero-glow {
 
 body.intro-reveal .hero-image img {
     opacity: 1;
-
     transform:
         translate(-50%, -50%)
         scale(1);
-
     transition-delay: 150ms;
 }
 
 body.intro-reveal .hero-heading-left,
 body.intro-reveal .hero-heading-right {
     opacity: 1;
-
     transform: translateX(0);
-
     transition-delay: 350ms;
 }
 
 body.intro-reveal .hero-paragraph {
     opacity: 1;
-
     transform: translateY(0);
-
     transition-delay: 600ms;
 }
 
 body.intro-reveal .navbar-logo,
 body.intro-reveal .buttons-wrapper {
     opacity: 1;
-
     transform: translateY(0);
-
     transition-delay: 700ms;
 }
 
+/* SMALL DESKTOP */
+
+@media (max-width: 1600px) {
+    .hero-heading {
+        font-size: 100px;
+    }
+
+    .hero-image img {
+        width: 600px;
+    }
+}
+
+/* SMALL DESKTOP */
+
+@media (max-width: 1400px) {
+    .hero-heading {
+        font-size: 90px;
+    }
+}
+
+/* SMALL DESKTOP */
+
+@media (max-width: 1280px) {
+    .hero-heading {
+        font-size: 80px;
+    }
+
+    .hero-image img {
+        width: 520px;
+        left: 53%;
+    }
+}
+
+/* TABLET */
+
 @media (max-width: 992px) {
+    .hero-content {
+        height: auto;
+        min-height: auto;
+        justify-content: center;
+        padding-top: 180px;
+        padding-bottom: 72px;
+    }
+
+    .heading-wrapper {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .hero-heading-left,
+    .hero-heading-right {
+        font-size: 96px;
+        line-height: 96px;
+    }
+
+    .hero-heading-left {
+        margin-top: 0;
+    }
+
+    .hero-heading-right {
+        align-self: flex-end;
+        margin-top: 0;
+    }
+
+    .hero-image {
+        position: relative;
+        z-index: 2;
+        align-self: center;
+    }
+
+    .hero-image img {
+        width: 450px;
+        position: relative;
+        top: auto;
+        left: auto;
+        z-index: 2;
+        transform: none;
+    }
+
+    .hero-paragraph {
+        position: static;
+        margin-top: 32px;
+        transform: none;
+    }
+
     body.is-loading .hero-image img {
         transform:
             translateY(24px)
@@ -849,10 +605,50 @@ body.intro-reveal .buttons-wrapper {
     }
 }
 
+/* MOBILE */
 
-/* =========================
-   REDUCED MOTION
-========================= */
+@media (max-width: 767px) {
+    .hero-heading-left,
+    .hero-heading-right {
+        font-size: 72px;
+        line-height: 72px;
+    }
+
+    .hero-content {
+        padding-top: 80px;
+    }
+
+    .hero-image {
+        max-width: 400px;
+    }
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .hero-heading-left,
+    .hero-heading-right {
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .hero-glow {
+        width: 300px;
+        height: 350px;
+        filter: blur(90px);
+        animation-duration: 8s;
+    }
+
+    .hero-content {
+        padding-top: 100px;
+    }
+
+    .hero-image {
+        max-width: 300px;
+    }
+}
+
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
     .preloader,
@@ -870,36 +666,11 @@ body.intro-reveal .buttons-wrapper {
     }
 }
 
+
 .section-services {
     padding-top: 96px;
     padding-bottom: 96px;
 }
-
-@media (max-width: 992px) {
-    .section-services {
-        padding-top: 72px;
-        padding-bottom: 72px;
-    }
-}
-
-@media (max-width: 767px) {
-    .section-services {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-}
-
-.container-md {
-    max-width: 1296px;
-    margin-inline: auto;
-    padding-inline: 0.75rem;
-    overflow: clip;
-}
-
-
-/* =========================
-   SERVICES HEADER
-========================= */
 
 .services-header {
     display: flex;
@@ -909,65 +680,9 @@ body.intro-reveal .buttons-wrapper {
     margin-bottom: 72px;
 }
 
-@media (max-width: 992px) {
-    .services-header {
-        flex-direction: column;
-        justify-content: start;
-        align-items: flex-start;
-        margin-bottom: 48px;
-    }
-}
-
-@media (max-width: 767px) {
-    .services-header {
-        margin-bottom: 32px;
-    }
-}
-
 .service-main-paragraph {
     max-width: 450px;
 }
-
-.label {
-    font-family: var(--ff-heading);
-    color: var(--clr-red);
-    font-size: 18px;
-    line-height: 18px;
-}
-
-.second-heading {
-    font-family: var(--ff-heading);
-    font-size: 60px;
-    line-height: 60px;
-    margin-top: 24px;
-    color: var(--clr-white);
-}
-
-@media (max-width: 992px) {
-    .second-heading {
-        margin-bottom: 24px;
-    }
-}
-
-@media (max-width: 767px) {
-    .second-heading {
-        font-size: 48px;
-        line-height: 48px;
-        margin-top: 16px;
-    }
-}
-
-@media (max-width: 479px) {
-    .second-heading {
-        font-size: 40px;
-        line-height: 40px;
-    }
-}
-
-
-/* =========================
-   SERVICES GRID
-========================= */
 
 .services-grid {
     display: flex;
@@ -975,37 +690,22 @@ body.intro-reveal .buttons-wrapper {
     gap: 24px;
 }
 
-
-/* =========================
-   SERVICES CARD
-========================= */
-
 .services-card {
     max-width: 1296px;
     width: 100%;
     height: 450px;
-
     border: 1px solid #dadada66;
     border-radius: 8px;
-
     display: flex;
-
     will-change: opacity, transform;
 }
-
-/*
-Animacija se aktivira tek kada JS doda klasu na sekciju.
-Tako kartice ostaju normalno vidljive ako JS ne radi.
-*/
 
 .section-services.services-animations-enabled .services-card {
     opacity: 0;
     transform: translateY(28px);
-
     transition:
         opacity 700ms ease,
         transform 700ms ease;
-
     transition-delay: var(--services-delay, 0ms);
 }
 
@@ -1014,58 +714,19 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     transform: translateY(0);
 }
 
-@media (max-width: 767px) {
-    .services-card {
-        flex-direction: column;
-        height: 620px;
-        max-width: 740px;
-    }
-}
-
-
-/* =========================
-   CARD CONTENT
-========================= */
-
 .card-content {
     width: 39%;
     padding: 32px;
 }
 
-@media (max-width: 767px) {
-    .card-content {
-        width: 100%;
-        padding: 24px;
-    }
-}
-
-
-/* =========================
-   IMAGE WRAPPER
-========================= */
-
 .card-img-wrapper {
     width: 60%;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: relative;
     overflow: hidden;
 }
-
-@media (max-width: 767px) {
-    .card-img-wrapper {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-
-/* =========================
-   SERVICE TEXT
-========================= */
 
 .service-number {
     font-family: var(--ff-heading);
@@ -1078,20 +739,10 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     font-family: var(--ff-heading);
     font-size: 30px;
     line-height: 30px;
-
     margin-top: 16px;
     margin-bottom: 24px;
-
     color: var(--clr-white);
-
     max-width: 280px;
-}
-
-@media (max-width: 479px) {
-    .service-heading {
-        font-size: 24px;
-        line-height: 24px;
-    }
 }
 
 .service-paragraph {
@@ -1103,29 +754,18 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     max-width: 380px;
 }
 
-
-/* =========================
-   SERVICE IMAGE
-========================= */
-
 .service-image img {
     width: 428px;
     max-width: 100%;
     height: auto;
-
     display: block;
-
     will-change: transform;
 }
 
-/* Slika kreće samo malo uvećana */
-
 .section-services.services-animations-enabled .service-image img {
     transform: scale(1.04);
-
     transition:
         transform 900ms ease;
-
     transition-delay:
         calc(var(--services-delay, 0ms) + 100ms);
 }
@@ -1136,73 +776,24 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     transform: scale(1);
 }
 
-@media (max-width: 767px) {
-    .service-image {
-        width: 345px;
-    }
-}
-
-@media (max-width: 479px) {
-    .service-image {
-        width: 275px;
-    }
-}
-
-
-/* =========================
-   CARD GLOW
-   Bez animacije
-========================= */
-
 .card-glow {
     width: 250px;
     height: 250px;
-
     border-radius: 100px;
-
     background-color: var(--clr-red);
     filter: blur(120px);
-
     position: absolute;
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
     z-index: -100;
 }
 
-@media (max-width: 479px) {
-    .card-glow {
-        width: 180px;
-        height: 180px;
-        filter: blur(100px);
-    }
-}
-
-
-/* =========================
-   DIVIDING LINE
-========================= */
-
 .line {
     background-color: #dadada66;
-
     height: 100%;
     width: 1px;
 }
-
-@media (max-width: 767px) {
-    .line {
-        width: 100%;
-        height: 1px;
-    }
-}
-
-
-/* =========================
-   VERTICAL CARDS WRAPPER
-========================= */
 
 .vertical-wrapper {
     display: flex;
@@ -1210,33 +801,11 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     gap: 24px;
 }
 
-@media (max-width: 767px) {
-    .vertical-wrapper {
-        flex-direction: column;
-        justify-content: center;
-    }
-}
-
-
-/* =========================
-   VERTICAL CARD
-========================= */
-
 .services-card--vertical {
     width: 636px;
     height: 900px;
-
     flex-direction: column;
 }
-
-@media (max-width: 767px) {
-    .services-card--vertical {
-        max-width: 740px;
-        width: 100%;
-        height: 620px;
-    }
-}
-
 
 .horizontal {
     width: 100%;
@@ -1248,32 +817,108 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     height: 45%;
 }
 
-@media (max-width: 767px) {
-    .content-vertical {
-        height: auto;
-        padding: 24px;
-    }
-}
-
 .img-wrapper--vertical {
     width: 100%;
     height: 55%;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* TABLET */
+
+@media (max-width: 992px) {
+    .section-services {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .services-header {
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        margin-bottom: 48px;
+    }
+}
+
+/* MOBILE */
+
 @media (max-width: 767px) {
+    .section-services {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .services-header {
+        margin-bottom: 32px;
+    }
+
+    .services-card {
+        flex-direction: column;
+        height: 620px;
+        max-width: 740px;
+    }
+
+    .card-content {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .card-img-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .service-image {
+        width: 345px;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+    }
+
+    .vertical-wrapper {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .services-card--vertical {
+        max-width: 740px;
+        width: 100%;
+        height: 620px;
+    }
+
+    .content-vertical {
+        height: auto;
+        padding: 24px;
+    }
+
     .img-wrapper--vertical {
         height: 100%;
     }
 }
 
+/* MOBILE PORTRAIT */
 
-/* =========================
-   REDUCED MOTION
-========================= */
+@media (max-width: 479px) {
+    .service-heading {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .service-image {
+        width: 275px;
+    }
+
+    .card-glow {
+        width: 180px;
+        height: 180px;
+        filter: blur(100px);
+    }
+}
+
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
     .section-services.services-animations-enabled .services-card {
@@ -1288,34 +933,11 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     }
 }
 
+
 .section-process {
     padding-top: 96px;
     padding-bottom: 96px;
 }
-
-@media (max-width: 992px) {
-    .section-process {
-        padding-top: 72px;
-        padding-bottom: 72px;
-    }
-}
-
-@media (max-width: 767px) {
-    .section-process {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-}
-
-@media (max-width: 479px) {
-    .section-process {
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
-}
-
-
-
 
 .process-header {
     display: flex;
@@ -1325,150 +947,87 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     margin-bottom: 72px;
 }
 
-@media (max-width: 992px) {
-    .process-header {
-        flex-direction: column;
-        justify-content: start;
-        align-items: flex-start;
-        margin-bottom: 48px;
-    }
-}
-
-@media (max-width: 767px) {
-    .process-header {
-        margin-bottom: 32px;
-    }
-}
-
-@media (max-width: 992px) {
-    .process-heading {
-        margin-bottom: 24px;
-    }
-}
-
 .process-paragraph {
     max-width: 450px;
 }
 
-
-
 .process-cards-wrapper {
     --numcards: 5;
-
     display: flex;
     flex-direction: column;
-
     width: 100%;
-
     padding-bottom: 0;
     margin-bottom: -55vh;
-
     view-timeline-name: --process-cards;
     view-timeline-axis: block;
 }
-
-
 
 .process-card {
     max-width: 1296px;
     width: 100%;
     height: 363px;
-
     position: sticky;
-
     margin-bottom: 55vh;
-
     --index0: calc(var(--index) - 1);
     --reverse-index: calc(var(--numcards) - var(--index0));
     --reverse-index0: calc(var(--reverse-index) - 1);
 }
 
-
-
-
 .process-card:nth-child(1) {
     --index: 1;
-
     top: 120px;
-
     z-index: 1;
 }
 
 .process-card:nth-child(2) {
     --index: 2;
-
     top: 144px;
-
     z-index: 2;
 }
 
 .process-card:nth-child(3) {
     --index: 3;
-
     top: 168px;
-
     z-index: 3;
 }
 
 .process-card:nth-child(4) {
     --index: 4;
-
     top: 192px;
-
     z-index: 4;
 }
 
 .process-card:nth-child(5) {
     --index: 5;
-
     top: 216px;
-
     z-index: 5;
-
-    margin-bottom: 55vh;
 }
-
-
-
 
 .process-card-inner {
     width: 100%;
     height: 363px;
-
     overflow: hidden;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     border: 1px solid #93233966;
     border-radius: 8px;
-
     background-color: var(--clr-bg);
-
     transform-origin: center top;
-
     --start-range:
         calc(var(--index0) / var(--numcards) * 100%);
-
     --end-range:
         calc(var(--index) / var(--numcards) * 100%);
-
     animation-name: scale-card;
     animation-duration: 1ms;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-
     animation-timeline: --process-cards;
-
     animation-range:
         exit-crossing var(--start-range)
         exit-crossing var(--end-range);
 }
-
-
-
 
 @keyframes scale-card {
     to {
@@ -1484,191 +1043,45 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     }
 }
 
-
-
-
-@media (max-width: 992px) {
-    .process-card:nth-child(1) {
-        top: 96px;
-    }
-
-    .process-card:nth-child(2) {
-        top: 116px;
-    }
-
-    .process-card:nth-child(3) {
-        top: 136px;
-    }
-
-    .process-card:nth-child(4) {
-        top: 156px;
-    }
-
-    .process-card:nth-child(5) {
-        top: 176px;
-    }
-}
-
-
-
-
-@media (max-width: 767px) {
-    .process-cards-wrapper {
-        align-items: center;
-
-        padding-bottom: 0;
-        margin-bottom: -60vh;
-    }
-
-    .process-card {
-        max-width: 400px;
-        height: 520px;
-
-        margin-bottom: 60vh;
-    }
-
-    .process-card:nth-child(1) {
-        top: 72px;
-    }
-
-    .process-card:nth-child(2) {
-        top: 88px;
-    }
-
-    .process-card:nth-child(3) {
-        top: 104px;
-    }
-
-    .process-card:nth-child(4) {
-        top: 120px;
-    }
-
-    .process-card:nth-child(5) {
-        top: 136px;
-
-        margin-bottom: 60vh;
-    }
-
-    .process-card-inner {
-        height: 520px;
-
-        flex-direction: column;
-        justify-content: flex-start;
-
-        gap: 48px;
-    }
-}
-
-
-
-
 .process-content {
     padding-top: 32px;
     padding-left: 72px;
-
     width: 100%;
-
     position: relative;
 }
 
-@media (max-width: 992px) {
-    .process-content {
-        padding-left: 32px;
-        width: 100%;
-    }
-}
-
-@media (max-width: 767px) {
-    .process-content {
-        padding-left: 24px;
-        padding-right: 24px;
-        padding-top: 72px;
-
-        width: 100%;
-    }
-}
-
-
-
-
 .small-label {
     color: var(--clr-red);
-
     font-family: var(--ff-heading);
-
     font-size: 16px;
     line-height: 16px;
 }
 
-
-
-
 .process-small-heading {
     font-family: var(--ff-heading);
-
     font-size: 30px;
     line-height: 30px;
-
     margin-top: 12px;
     margin-bottom: 24px;
-
     color: var(--clr-white);
 }
-
-@media (max-width: 992px) {
-    .process-small-heading {
-        font-size: 24px;
-        line-height: 24px;
-    }
-}
-
-
-
 
 .process-small-paragraph {
     max-width: 400px;
 }
 
-
-
-
 .number-step-wrapper {
     width: 120px;
     height: 134px;
-
     position: absolute;
-
     top: -20%;
     left: 25%;
-
     z-index: -100;
-}
-
-@media (max-width: 992px) {
-    .number-step-wrapper {
-        width: 88px;
-        height: 98px;
-
-        top: -10%;
-        left: 25%;
-    }
-}
-
-@media (max-width: 767px) {
-    .number-step-wrapper {
-        width: 72px;
-        height: 81px;
-
-        top: 15%;
-        left: 20%;
-    }
 }
 
 .number-step {
     opacity: 0.1;
 }
-
-
 
 .process-image-wrapper {
     width: 100%;
@@ -1680,36 +1093,183 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     height: auto;
 }
 
-@media (max-width: 992px) {
-    .process-image {
-        max-width: 416px;
-    }
-}
-
 .process-img {
     opacity: 0.5;
 }
 
-
-
+/* TABLET */
 
 @media (max-width: 992px) {
+    .section-process {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .process-header {
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        margin-bottom: 48px;
+    }
+
+    .process-heading {
+        margin-bottom: 24px;
+    }
+
+    .process-cards-wrapper {
+        gap: 24px;
+        margin-bottom: 0;
+        view-timeline-name: none;
+    }
+
+    .process-card {
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .process-card:nth-child(n) {
+        top: auto;
+        z-index: auto;
+    }
+
+    .process-card-inner {
+        animation: none;
+        animation-timeline: auto;
+        transform: none;
+    }
+
+    .process-content {
+        padding-left: 32px;
+        width: 100%;
+    }
+
+    .process-small-heading {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .number-step-wrapper {
+        width: 88px;
+        height: 98px;
+        top: -10%;
+        left: 25%;
+    }
+
+    .process-image {
+        max-width: 416px;
+    }
+
     .is-quality {
         max-width: 416px;
-
         position: absolute;
-
         right: 0;
         top: 80px;
     }
+
+    /* FADE-UP ANIMATION */
+
+    .section-process.process-animations-enabled .process-card {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+            opacity 700ms ease,
+            transform 700ms ease;
+    }
+
+    .section-process.process-animations-enabled .process-card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/* MOBILE */
+
 @media (max-width: 767px) {
+    .section-process {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .process-header {
+        margin-bottom: 32px;
+    }
+
+    .process-cards-wrapper {
+        align-items: center;
+    }
+
+    .process-card {
+        max-width: 400px;
+        height: 520px;
+    }
+
+    .process-card-inner {
+        height: 520px;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 48px;
+    }
+
+    .process-content {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 72px;
+        width: 100%;
+    }
+
+    .number-step-wrapper {
+        width: 72px;
+        height: 81px;
+        top: 15%;
+        left: 20%;
+    }
+
     .is-quality {
         position: static;
     }
 }
 
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .section-process {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .process-cards-wrapper {
+        gap: 24px;
+        margin-bottom: 0;
+        view-timeline-name: none;
+    }
+
+    .process-card {
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .process-card:nth-child(n) {
+        top: auto;
+        z-index: auto;
+    }
+
+    .process-card-inner {
+        animation: none;
+        animation-timeline: auto;
+        transform: none;
+    }
+
+    .section-process.process-animations-enabled .process-card,
+    .section-process.process-animations-enabled .process-card.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 
 .section-about {
     padding-top: 96px;
@@ -1718,136 +1278,24 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     overflow: hidden;
 }
 
-@media (max-width: 992px) {
-    .section-about {
-        padding-top: 72px;
-        padding-bottom: 72px;
-    }
-}
-
-@media (max-width: 767px) {
-    .section-about {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-}
-
-@media (max-width: 479px) {
-    .section-about {
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
-}
-
-
-/* =========================
-   CONTENT WRAPPER
-========================= */
-
-@media (max-width: 992px) {
-    .about-content-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-
-/* =========================
-   ABOUT HEADER
-========================= */
-
 .about-header {
     margin-bottom: 72px;
-}
-
-@media (max-width: 992px) {
-    .about-header {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        margin-bottom: 48px;
-    }
-}
-
-@media (max-width: 767px) {
-    .about-header {
-        margin-bottom: 32px;
-    }
 }
 
 .about-heading {
     font-size: 48px;
     line-height: 48px;
-
     max-width: 710px;
-
     margin-bottom: 32px;
-}
-
-@media (max-width: 1400px) {
-    .about-heading {
-        max-width: 490px;
-    }
-}
-
-@media (max-width: 992px) {
-    .about-heading {
-        text-align: center;
-        max-width: 710px;
-        margin-bottom: 24px;
-    }
-}
-
-@media (max-width: 767px) {
-    .about-heading {
-        font-size: 40px;
-        line-height: 40px;
-    }
-}
-
-@media (max-width: 479px) {
-    .about-heading {
-        font-size: 32px;
-        line-height: 32px;
-    }
 }
 
 .about-paragraph {
     max-width: 620px;
 }
 
-@media (max-width: 1400px) {
-    .about-paragraph {
-        max-width: 490px;
-    }
-}
-
-@media (max-width: 992px) {
-    .about-paragraph {
-        max-width: 490px;
-        text-align: center;
-    }
-}
-
-
-/* =========================
-   STATS
-========================= */
-
 .about-stats-wrapper {
     display: flex;
     gap: 24px;
-}
-
-@media (max-width: 479px) {
-    .about-stats-wrapper {
-        flex-direction: column;
-        width: 100%;
-    }
 }
 
 .about-stat {
@@ -1855,25 +1303,9 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     flex-direction: column;
 }
 
-@media (max-width: 479px) {
-    .about-stat {
-        flex-direction: row;
-        gap: 16px;
-        align-items: flex-start;
-    }
-}
-
-
-
 .about-icon-wrapper {
     max-width: 64px;
     width: 100%;
-}
-
-@media (max-width: 767px) {
-    .about-icon-wrapper {
-        max-width: 48px;
-    }
 }
 
 .first-wrapper {
@@ -1886,16 +1318,8 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     font-size: 24px;
     line-height: 24px;
     color: var(--clr-white);
-
     margin-top: 16px;
     margin-bottom: 16px;
-}
-
-@media (max-width: 479px) {
-    .about-stat-value {
-        margin-top: 0;
-        margin-bottom: 8px;
-    }
 }
 
 .about-stat-title {
@@ -1917,64 +1341,22 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     background-color: #d9d9d9cc;
 }
 
-@media (max-width: 479px) {
-    .stats-divider {
-        width: 100%;
-        height: 1px;
-        min-height: auto;
-    }
-}
-
-
-/* =========================
-   ABOUT IMAGE
-========================= */
-
 .about-image-wrapper {
     position: absolute;
     right: 0;
     bottom: 0;
-
     max-width: 646px;
     width: clamp(450px, 42vw, 646px);
     height: auto;
-}
-
-@media (max-width: 992px) {
-    .about-image-wrapper {
-        position: static;
-
-        width: 100%;
-
-        margin-inline: auto;
-        margin-top: 48px;
-    }
 }
 
 .about-img {
     opacity: 0.2;
 }
 
-@media (max-width: 992px) {
-    .about-img {
-        display: block;
-
-        width: 100%;
-        height: auto;
-
-        opacity: 0.4;
-    }
-}
-
-
-/* =========================
-   ABOUT REVEAL ANIMATION
-========================= */
-
 .section-about.about-animations-enabled .about-header {
     opacity: 0;
     transform: translateY(24px);
-
     transition:
         opacity 700ms ease,
         transform 700ms ease;
@@ -1983,7 +1365,6 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 .section-about.about-animations-enabled .about-stat {
     opacity: 0;
     transform: translateY(20px);
-
     transition:
         opacity 650ms ease,
         transform 650ms ease;
@@ -1997,22 +1378,15 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 .section-about.about-animations-enabled .about-image-wrapper {
     opacity: 0;
     transform: translateX(32px);
-
     transition:
         opacity 900ms ease,
         transform 900ms ease;
 }
 
-
-/* HEADER VISIBLE */
-
 .section-about.about-animations-enabled.is-visible .about-header {
     opacity: 1;
     transform: translateY(0);
 }
-
-
-/* FIRST STAT */
 
 .section-about.about-animations-enabled.is-visible
 .about-stats-wrapper > .about-stat:nth-child(1) {
@@ -2021,9 +1395,6 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     transition-delay: 120ms;
 }
 
-
-/* SECOND STAT */
-
 .section-about.about-animations-enabled.is-visible
 .about-stats-wrapper > .about-stat:nth-child(3) {
     opacity: 1;
@@ -2031,18 +1402,12 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     transition-delay: 220ms;
 }
 
-
-/* THIRD STAT */
-
 .section-about.about-animations-enabled.is-visible
 .about-stats-wrapper > .about-stat:nth-child(5) {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 320ms;
 }
-
-
-/* DIVIDERS */
 
 .section-about.about-animations-enabled.is-visible
 .about-stats-wrapper > .stats-divider:nth-child(2) {
@@ -2056,19 +1421,72 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     transition-delay: 280ms;
 }
 
-
-/* IMAGE */
-
 .section-about.about-animations-enabled.is-visible .about-image-wrapper {
     opacity: 1;
     transform: translateX(0);
     transition-delay: 150ms;
 }
 
+/* SMALL DESKTOP */
 
-/* TABLET / MOBILE IMAGE MOVEMENT */
+@media (max-width: 1400px) {
+    .about-heading {
+        max-width: 490px;
+    }
+
+    .about-paragraph {
+        max-width: 490px;
+    }
+}
+
+/* TABLET */
 
 @media (max-width: 992px) {
+    .section-about {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .about-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 48px;
+    }
+
+    .about-heading {
+        text-align: center;
+        max-width: 710px;
+        margin-bottom: 24px;
+    }
+
+    .about-paragraph {
+        max-width: 490px;
+        text-align: center;
+    }
+
+    .about-image-wrapper {
+        position: static;
+        width: 100%;
+        margin-inline: auto;
+        margin-top: 48px;
+    }
+
+    .about-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        opacity: 0.4;
+    }
+
     .section-about.about-animations-enabled .about-image-wrapper {
         transform: translateY(28px);
     }
@@ -2078,10 +1496,65 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     }
 }
 
+/* MOBILE */
 
-/* =========================
-   REDUCED MOTION
-========================= */
+@media (max-width: 767px) {
+    .section-about {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .about-header {
+        margin-bottom: 32px;
+    }
+
+    .about-heading {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .about-icon-wrapper {
+        max-width: 48px;
+    }
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .section-about {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .about-heading {
+        font-size: 32px;
+        line-height: 32px;
+    }
+
+    .about-stats-wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about-stat {
+        flex-direction: row;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .about-stat-value {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .stats-divider {
+        width: 100%;
+        height: 1px;
+        min-height: auto;
+    }
+}
+
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
     .section-about.about-animations-enabled .about-header,
@@ -2094,58 +1567,16 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     }
 }
 
+
 .section-faq {
     padding-top: 96px;
     padding-bottom: 96px;
-}
-
-@media (max-width: 992px) {
-    .section-faq {
-        padding-top: 72px;
-        padding-bottom: 72px;
-    }
-}
-
-@media (max-width: 767px) {
-    .section-faq {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-}
-
-@media (max-width: 479px) {
-    .section-faq {
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
 }
 
 .faq-main-wrapper {
     display: flex;
     justify-content: space-between;
     gap: 16px;
-}
-
-@media (max-width: 992px) {
-    .faq-main-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 48px;
-    }
-}
-
-@media (max-width: 767px) {
-    .faq-main-wrapper {
-        gap: 32px;
-    }
-}
-
-@media (max-width: 992px) {
-    .faq-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 .faq-heading {
@@ -2155,52 +1586,14 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     line-height: 48px;
 }
 
-@media (max-width: 992px) {
-    .faq-heading {
-        text-align: center;
-        max-width: 550px;
-        margin-bottom: 24px;
-    }
-}
-
-@media (max-width: 767px) {
-    .faq-heading {
-        max-width: 450px;
-        font-size: 40px;
-        line-height: 40px;
-        margin-bottom: 16px;
-    }
-}
-
-@media (max-width: 479px) {
-    .faq-heading {
-        max-width: 350px;
-        font-size: 32px;
-        line-height: 32px;
-    }
-}
-
 .faq-paragraph {
     max-width: 366px;
-}
-
-@media (max-width: 992px) {
-    .faq-paragraph {
-        text-align: center;
-        max-width: 400px;
-    }
 }
 
 .faq-items-wrapper {
     display: flex;
     flex-direction: column;
     gap: 24px;
-}
-
-@media (max-width: 767px) {
-    .faq-items-wrapper {
-        gap: 16px;
-    }
 }
 
 .faq-item {
@@ -2212,15 +1605,6 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     padding-bottom: 32px;
     border: 1px solid #dadada66;
     border-radius: 8px;
-}
-
-@media (max-width: 767px) {
-    .faq-item {
-        padding-top: 24px;
-        padding-bottom: 24px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 }
 
 .faq-question {
@@ -2241,7 +1625,6 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     font-size: 24px;
     line-height: 24px;
     color: #f5f5f5B3;
-
 }
 
 .faq-question-heading {
@@ -2251,24 +1634,9 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     color: #f5f5f5B3;
 }
 
-@media (max-width: 767px) {
-    .faq-number,
-    .faq-question-heading {
-        font-size: 20px;
-        line-height: 20px;
-    }
-}
-
 .faq-icon {
     max-width: 36px;
     width: 100%;
-}
-
-@media (max-width: 767px) {
-    .faq-icon {
-        max-width: 30px;
-        margin-left: 8px;
-    }
 }
 
 .faq-minus-icon {
@@ -2307,37 +1675,101 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     padding-top: 32px;
 }
 
+/* TABLET */
+
+@media (max-width: 992px) {
+    .section-faq {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .faq-main-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+    }
+
+    .faq-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .faq-heading {
+        text-align: center;
+        max-width: 550px;
+        margin-bottom: 24px;
+    }
+
+    .faq-paragraph {
+        text-align: center;
+        max-width: 400px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+    .section-faq {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .faq-main-wrapper {
+        gap: 32px;
+    }
+
+    .faq-heading {
+        max-width: 450px;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 16px;
+    }
+
+    .faq-items-wrapper {
+        gap: 16px;
+    }
+
+    .faq-item {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .faq-number,
+    .faq-question-heading {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .faq-icon {
+        max-width: 30px;
+        margin-left: 8px;
+    }
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .section-faq {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .faq-heading {
+        max-width: 350px;
+        font-size: 32px;
+        line-height: 32px;
+    }
+}
+
+
 .section-contact {
     padding-top: 96px;
     padding-bottom: 96px;
     position: relative;
 }
-
-@media (max-width: 992px) {
-    .section-contact {
-        padding-top: 72px;
-        padding-bottom: 72px;
-    }
-}
-
-@media (max-width: 767px) {
-    .section-contact {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-}
-
-@media (max-width: 479px) {
-    .section-contact {
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
-}
-
-
-/* =========================
-   MAIN LAYOUT
-========================= */
 
 .contact-main-wrapper {
     display: flex;
@@ -2345,78 +1777,25 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     gap: 24px;
 }
 
-@media (max-width: 992px) {
-    .contact-main-wrapper {
-        flex-direction: column;
-        gap: 48px;
-    }
-}
-
 .contact-content {
     min-width: 50%;
 }
 
-@media (max-width: 992px) {
-    .contact-content {
-        min-width: 0;
-        width: 100%;
-    }
-}
-
-
-/* =========================
-   CONTACT HEADER
-========================= */
-
 .contact-heading {
     max-width: 550px;
-
     margin-bottom: 32px;
-
     font-size: 48px;
     line-height: 48px;
-}
-
-@media (max-width: 992px) {
-    .contact-heading {
-        margin-bottom: 24px;
-    }
-}
-
-@media (max-width: 767px) {
-    .contact-heading {
-        max-width: 450px;
-
-        margin-bottom: 16px;
-
-        font-size: 40px;
-        line-height: 40px;
-    }
-}
-
-@media (max-width: 479px) {
-    .contact-heading {
-        max-width: 400px;
-
-        font-size: 32px;
-        line-height: 32px;
-    }
 }
 
 .contact-paragraph {
     max-width: 472px;
 }
 
-
-/* =========================
-   CONTACT INFORMATION
-========================= */
-
 .contact-info-main {
     display: flex;
     flex-direction: column;
     gap: 48px;
-
     margin-top: 40px;
 }
 
@@ -2429,22 +1808,12 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 .contact-icons {
     width: 72px;
     height: 72px;
-
     flex-shrink: 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     border: 1px solid #dadada66;
     border-radius: 50%;
-}
-
-@media (max-width: 767px) {
-    .contact-icons {
-        width: 48px;
-        height: 48px;
-    }
 }
 
 .info-icon {
@@ -2452,27 +1821,17 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     width: 100%;
 }
 
-@media (max-width: 767px) {
-    .info-icon {
-        max-width: 24px;
-    }
-}
-
 .info-header {
     display: block;
-
     margin-bottom: 16px;
-
     font-family: var(--ff-heading);
     font-size: 18px;
     line-height: 18px;
-
     color: #f5f5f5b3;
 }
 
 .info-paragraph {
     max-width: 340px;
-
     color: var(--clr-white);
 }
 
@@ -2483,7 +1842,6 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 .social-media-wrapper {
     display: flex;
     gap: 16px;
-
     margin-top: 8px;
 }
 
@@ -2492,48 +1850,20 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     width: 100%;
 }
 
-
-/* =========================
-   CONTACT FORM
-========================= */
-
 .contact-form {
     max-width: 625px;
     width: 100%;
-
     flex-shrink: 1;
-
     display: grid;
-
     padding: 48px;
-
     background-color: #101010;
-
     border: 1px solid #93233966;
     border-radius: 20px;
 }
 
-@media (max-width: 992px) {
-    .contact-form {
-        margin-inline: auto;
-    }
-}
-
-@media (max-width: 767px) {
-    .contact-form {
-        padding: 24px;
-    }
-}
-
-
-/* =========================
-   FORM STATE WRAPPERS
-========================= */
-
 .form-content,
 .form-success {
     width: 100%;
-
     grid-column: 1;
     grid-row: 1;
 }
@@ -2542,7 +1872,6 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-
     transition:
         opacity 300ms ease,
         visibility 300ms ease;
@@ -2550,29 +1879,18 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 
 .form-success {
     align-self: stretch;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     padding-block: 48px;
-
     text-align: center;
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transition:
         opacity 300ms ease,
         visibility 300ms ease;
-}
-
-@media (max-width: 767px) {
-    .form-success {
-        padding-block: 32px;
-    }
 }
 
 .contact-form.is-success .form-content {
@@ -2587,86 +1905,41 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     pointer-events: auto;
 }
 
-
-/* =========================
-   FORM HEADER
-========================= */
-
 .form-header {
     margin-bottom: 32px;
 }
 
-@media (max-width: 767px) {
-    .form-header {
-        margin-bottom: 24px;
-    }
-}
-
 .form-heading {
     padding-bottom: 24px;
-
     font-family: var(--ff-heading);
     font-size: 30px;
     line-height: 30px;
-
     color: var(--clr-red);
 }
-
-@media (max-width: 767px) {
-    .form-heading {
-        padding-bottom: 16px;
-
-        font-size: 24px;
-        line-height: 24px;
-    }
-}
-
-
-/* =========================
-   FORM GROUPS
-========================= */
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 16px;
-
     margin-bottom: 24px;
-}
-
-@media (max-width: 767px) {
-    .form-group {
-        margin-bottom: 16px;
-    }
 }
 
 .form-label {
     font-family: var(--ff-body);
     font-size: 16px;
     line-height: 16px;
-
     color: #d9d9d9cc;
 }
-
-
-/* =========================
-   FORM FIELDS
-========================= */
 
 .form-input,
 .form-textarea {
     width: 100%;
-
     font-family: var(--ff-body);
-
     color: #f5f5f5;
     background-color: #181718;
-
     border: 1px solid #dadada66;
     border-radius: 8px;
-
     outline: none;
-
     transition:
         border-color 200ms ease,
         background-color 200ms ease;
@@ -2674,23 +1947,14 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 
 .form-input {
     height: 52px;
-
     padding-left: 16px;
 }
 
 .form-textarea {
     height: 120px;
-
     padding-top: 16px;
     padding-left: 16px;
-
     resize: none;
-}
-
-@media (max-width: 767px) {
-    .form-textarea {
-        height: 90px;
-    }
 }
 
 .form-input:focus,
@@ -2707,9 +1971,7 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
 .form-input:-webkit-autofill {
     -webkit-text-fill-color: #f5f5f5;
     -webkit-box-shadow: 0 0 0 1000px #181718 inset;
-
     box-shadow: 0 0 0 1000px #181718 inset;
-
     border-color: #f5f5f5;
 }
 
@@ -2724,23 +1986,14 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     border-color: #932339;
 }
 
-
-/* =========================
-   SUBMIT BUTTON
-========================= */
-
 .form-submit {
     width: 100%;
     height: 44px;
-
     font-family: var(--ff-body);
     font-size: 18px;
-
     color: var(--clr-white);
     background-color: var(--clr-red);
-
     border-radius: 8px;
-
     transition:
         transform 200ms ease,
         opacity 200ms ease;
@@ -2754,31 +2007,17 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     transform: translateY(0);
 }
 
-@media (max-width: 767px) {
-    .form-submit {
-        font-size: 16px;
-    }
-}
-
 .form-submit:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
 }
 
-
-/* =========================
-   ERROR MESSAGE
-========================= */
-
 .form-error {
     display: none;
-
     margin-top: 16px;
     padding: 12px 16px;
-
     background-color: #9323391f;
-
     border: 1px solid #93233980;
     border-radius: 8px;
 }
@@ -2787,9 +2026,7 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     font-family: var(--ff-body);
     font-size: 14px;
     line-height: 20px;
-
     text-align: center;
-
     color: #e99aa8;
 }
 
@@ -2801,74 +2038,33 @@ Tako kartice ostaju normalno vidljive ako JS ne radi.
     display: none;
 }
 
-
-/* =========================
-   SUCCESS MESSAGE
-========================= */
-
 .form-success-icon {
     width: 72px;
     height: 72px;
-
     margin-bottom: 32px;
-
     object-fit: contain;
 }
 
 .form-success-title {
     display: block;
-
     margin-bottom: 16px;
-
     font-family: var(--ff-heading);
     font-size: 36px;
     line-height: 36px;
-
     color: var(--clr-red);
 }
 
 .form-success-text {
     max-width: 380px;
-
     font-family: var(--ff-body);
     font-size: 16px;
     line-height: 24px;
-
     color: #f5f5f5b3;
 }
-
-@media (max-width: 767px) {
-    .form-success-icon {
-        width: 56px;
-        height: 56px;
-
-        margin-bottom: 24px;
-    }
-
-    .form-success-title {
-        font-size: 28px;
-        line-height: 28px;
-    }
-
-    .form-success-text {
-        max-width: 320px;
-    }
-}
-
-
-/* =========================
-   CONTACT REVEAL ANIMATION
-========================= */
-
-/*
-Elementi se sakrivaju tek kada JS doda ovu klasu.
-Ako JS ne radi, sve ostaje normalno vidljivo.
-*/
 
 .section-contact.contact-animations-enabled .contact-header {
     opacity: 0;
     transform: translateY(24px);
-
     transition:
         opacity 700ms ease,
         transform 700ms ease;
@@ -2877,7 +2073,6 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
 .section-contact.contact-animations-enabled .contant-info {
     opacity: 0;
     transform: translateY(18px);
-
     transition:
         opacity 650ms ease,
         transform 650ms ease;
@@ -2886,28 +2081,20 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
 .section-contact.contact-animations-enabled .contact-form {
     opacity: 0;
     transform: translateY(28px);
-
     transition:
         opacity 800ms ease,
         transform 800ms ease;
 }
-
-
-/* HEADER */
 
 .section-contact.contact-animations-enabled.is-visible .contact-header {
     opacity: 1;
     transform: translateY(0);
 }
 
-
-/* CONTACT ITEMS */
-
 .section-contact.contact-animations-enabled.is-visible
 .contact-info-main > .contant-info:nth-child(1) {
     opacity: 1;
     transform: translateY(0);
-
     transition-delay: 100ms;
 }
 
@@ -2915,7 +2102,6 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
 .contact-info-main > .contant-info:nth-child(2) {
     opacity: 1;
     transform: translateY(0);
-
     transition-delay: 180ms;
 }
 
@@ -2923,7 +2109,6 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
 .contact-info-main > .contant-info:nth-child(3) {
     opacity: 1;
     transform: translateY(0);
-
     transition-delay: 260ms;
 }
 
@@ -2931,38 +2116,13 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
 .contact-info-main > .contant-info:nth-child(4) {
     opacity: 1;
     transform: translateY(0);
-
     transition-delay: 340ms;
 }
-
-
-/* FORM */
 
 .section-contact.contact-animations-enabled.is-visible .contact-form {
     opacity: 1;
     transform: translateY(0);
-
     transition-delay: 140ms;
-}
-
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media (prefers-reduced-motion: reduce) {
-    .section-contact.contact-animations-enabled .contact-header,
-    .section-contact.contact-animations-enabled .contant-info,
-    .section-contact.contact-animations-enabled .contact-form {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-
-    .form-content,
-    .form-success {
-        transition: none;
-    }
 }
 
 .cta-bg-img {
@@ -2979,6 +2139,136 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
     opacity: 0.12;
 }
 
+/* TABLET */
+
+@media (max-width: 992px) {
+    .section-contact {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .contact-main-wrapper {
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .contact-content {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .contact-heading {
+        margin-bottom: 24px;
+    }
+
+    .contact-form {
+        margin-inline: auto;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+    .section-contact {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .contact-heading {
+        max-width: 450px;
+        margin-bottom: 16px;
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .contact-icons {
+        width: 48px;
+        height: 48px;
+    }
+
+    .info-icon {
+        max-width: 24px;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+
+    .form-success {
+        padding-block: 32px;
+    }
+
+    .form-header {
+        margin-bottom: 24px;
+    }
+
+    .form-heading {
+        padding-bottom: 16px;
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-textarea {
+        height: 90px;
+    }
+
+    .form-submit {
+        font-size: 16px;
+    }
+
+    .form-success-icon {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 24px;
+    }
+
+    .form-success-title {
+        font-size: 28px;
+        line-height: 28px;
+    }
+
+    .form-success-text {
+        max-width: 320px;
+    }
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .section-contact {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .contact-heading {
+        max-width: 400px;
+        font-size: 32px;
+        line-height: 32px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .section-contact.contact-animations-enabled .contact-header,
+    .section-contact.contact-animations-enabled .contant-info,
+    .section-contact.contact-animations-enabled .contact-form {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .form-content,
+    .form-success {
+        transition: none;
+    }
+}
+
+
 .footer {
     padding-top: 72px;
     padding-bottom: 32px;
@@ -2987,29 +2277,9 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
     overflow: hidden;
 }
 
-@media (max-width: 992px) {
-    .footer {
-        padding-top: 48px;
-    }
-}
-
-@media (max-width: 479px) {
-    .footer {
-        padding-top: 32px;
-    }
-}
-
 .footer-content {
     display: flex;
     justify-content: space-between;
-}
-
-@media (max-width: 767px) {
-    .footer-content {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 .footer-logo {
@@ -3017,24 +2287,9 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
     width: 100%;
 }
 
-@media (max-width: 767px) {
-    .footer-logo {
-        max-width: 207px;
-    }
-}
-
 .footer-links-wrapper {
     display: flex;
     gap: 16px;
-}
-
-@media (max-width: 767px) {
-    .footer-links-wrapper {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 24px;
-    }
 }
 
 .footer-link {
@@ -3065,9 +2320,43 @@ Ako JS ne radi, sve ostaje normalno vidljivo.
     top: 55%;
 }
 
+/* TABLET */
+
+@media (max-width: 992px) {
+    .footer {
+        padding-top: 48px;
+    }
+}
+
+/* MOBILE */
+
 @media (max-width: 767px) {
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-logo {
+        max-width: 207px;
+    }
+
+    .footer-links-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 24px;
+    }
+
     .footer-line {
         top: 75%;
+    }
+}
 
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .footer {
+        padding-top: 32px;
     }
 }

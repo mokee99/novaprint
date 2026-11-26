@@ -275,6 +275,34 @@ if (servicesSection && serviceCards.length > 0) {
   });
 }
 
+// PROCESS REVEAL
+
+const processSection = document.querySelector(".section-process");
+const processCards = document.querySelectorAll(".process-card");
+
+if (processSection && processCards.length > 0 && "IntersectionObserver" in window) {
+    processSection.classList.add("process-animations-enabled");
+
+    const processObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            });
+        },
+        {
+            threshold: 0.15,
+            rootMargin: "0px 0px -30px 0px"
+        }
+    );
+
+    processCards.forEach((card) => {
+        processObserver.observe(card);
+    });
+}
+
 const aboutSection = document.querySelector(".section-about");
 
 if (aboutSection) {
